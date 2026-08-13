@@ -8,13 +8,14 @@ import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { ProjectModal } from './components/ProjectModal';
 import { Project } from './types';
+import { ThemeProvider } from './context/ThemeContext';
 
-export default function App() {
+function PortfolioApp() {
   const [resumeOpen, setResumeOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <div className="min-h-screen bg-[#0b0e14] text-white flex flex-col font-sans relative overflow-x-hidden">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0b0e14] text-slate-900 dark:text-white flex flex-col font-sans relative overflow-x-hidden transition-colors duration-300">
       {/* Navigation */}
       <Navbar onOpenResume={() => setResumeOpen(true)} />
 
@@ -40,6 +41,13 @@ export default function App() {
         onClose={() => setSelectedProject(null)} 
       />
     </div>
-    //123
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <PortfolioApp />
+    </ThemeProvider>
   );
 }

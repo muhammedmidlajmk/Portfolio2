@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.dark, html.dark body {
     background-color: #0b0e14;
     color: #ffffff;
     background-image: 
@@ -14,12 +20,28 @@
     background-attachment: fixed;
   }
 
+  body.light, html.light body {
+    background-color: #f8fafc;
+    color: #0f172a;
+    background-image: 
+      radial-gradient(circle at 5% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+      radial-gradient(circle at 95% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 45%),
+      linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    background-attachment: fixed;
+  }
+
   code, pre {
     font-family: 'JetBrains Mono', monospace;
   }
 }
 
 .text-accent {
+  color: #6366f1;
+}
+
+html.dark .text-accent {
   color: #818cf8;
 }
 
@@ -27,43 +49,74 @@
   background-color: #6366f1;
 }
 
-.skill-tag {
+/* Skill Tags */
+.dark .skill-tag {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.light .skill-tag {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.skill-tag {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .skill-tag:hover {
-  border-color: #6366f1;
-  background: rgba(99, 102, 241, 0.15);
+  border-color: #6366f1 !important;
+  background: rgba(99, 102, 241, 0.15) !important;
   box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
 }
 
-.project-card {
+/* Project Cards */
+.dark .project-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(12px);
+}
+
+.light .project-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.project-card {
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-card:hover {
+.dark .project-card:hover {
   border-color: rgba(99, 102, 241, 0.4);
   transform: translateY(-6px);
   box-shadow: 0 20px 30px -10px rgba(11, 14, 20, 0.8), 0 0 25px -5px rgba(99, 102, 241, 0.15);
+}
+
+.light .project-card:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px -5px rgba(99, 102, 241, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
-::-webkit-scrollbar-track {
+.dark ::-webkit-scrollbar-track {
   background: #0b0e14;
 }
-::-webkit-scrollbar-thumb {
+.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.dark ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #6366f1;
 }
-
