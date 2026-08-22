@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, FileText, Send, Code2, User, Sparkles, Sun, Moon } from 'lucide-react';
+import { Menu, X, FileText, Send, Code2, User, Sparkles, Sun, Moon, Briefcase } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { useTheme } from '../context/ThemeContext';
 
@@ -17,7 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      const sections = ['home', 'experience', 'about', 'skills', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 150;
 
       for (const sectionId of sections) {
@@ -39,8 +39,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
 
   const navLinks = [
     { name: 'Home', href: '#home', id: 'home', icon: Sparkles },
-    { name: 'About', href: '#about', id: 'about', icon: User },
-    { name: 'Skills', href: '#skills', id: 'skills', icon: Code2 },
+    { name: 'Experience', href: '#experience', id: 'experience', icon: Briefcase },
+    { name: 'About & Skills', href: '#about', id: 'about', icon: User },
     { name: 'Projects', href: '#projects', id: 'projects', icon: FileText },
     { name: 'Contact', href: '#contact', id: 'contact', icon: Send },
   ];
@@ -62,7 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
           <span className="bg-gradient-to-r from-slate-900 via-indigo-900 to-indigo-600 dark:from-white dark:via-gray-200 dark:to-indigo-200 bg-clip-text text-transparent">
             {PERSONAL_INFO.initials}
           </span>
-          <span className="text-accent group-hover:scale-125 transition-transform duration-300 inline-block">.</span>
+          <span className="text-indigo-600 dark:text-indigo-400 group-hover:scale-125 transition-transform duration-300 inline-block">.</span>
         </a>
 
         {/* Desktop Nav Links */}
@@ -107,7 +107,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
             className="hidden md:flex items-center space-x-2 px-4 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-xs font-semibold hover:bg-slate-200 dark:hover:bg-white/10 hover:border-indigo-500/40 text-slate-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-white transition-all shadow-sm"
           >
             <FileText className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-            <span>RESUME</span>
+            <span>CV</span>
           </button>
 
           {/* Mobile Menu Button */}
@@ -165,7 +165,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
               className="w-full flex items-center justify-center space-x-2 py-3 bg-indigo-600 text-white rounded-xl text-xs font-bold transition shadow-lg shadow-indigo-500/20"
             >
               <FileText className="w-4 h-4" />
-              <span>VIEW FULL RESUME</span>
+              <span>VIEW FULL CV</span>
             </button>
           </div>
         </div>

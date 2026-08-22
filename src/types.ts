@@ -4,7 +4,7 @@ export interface Project {
   shortDescription: string;
   fullDescription: string;
   tags: string[];
-  category: 'backend' | 'database' | 'security' | 'fullstack';
+  category: 'database' | 'backend' | 'fullstack' | 'automation';
   icon: string;
   accentColor?: string;
   architectureDetails?: string[];
@@ -24,12 +24,33 @@ export interface SkillCategory {
   }[];
 }
 
+export interface WorkExperience {
+  company: string;
+  location: string;
+  role: string;
+  period: string;
+  isCurrent: boolean;
+  responsibilities: {
+    area: string;
+    points: string[];
+  }[];
+}
+
 export interface Education {
   degree: string;
   institution: string;
+  board?: string;
   period: string;
+  grade: string;
   status: string;
   highlights: string[];
+}
+
+export interface PersonalDetails {
+  dob: string;
+  nationality: string;
+  location: string;
+  phone: string;
 }
 
 export interface ContactFormData {
@@ -38,3 +59,4 @@ export interface ContactFormData {
   subject: string;
   message: string;
 }
+

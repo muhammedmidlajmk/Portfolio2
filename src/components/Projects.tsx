@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Package, ShieldAlert, GraduationCap, Database, ExternalLink, Github, ChevronRight, Layers, Sparkles } from 'lucide-react';
+import { Package, ShieldAlert, Database, ExternalLink, Github, ChevronRight, Layers, Sparkles, Cpu } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/portfolioData';
 import { Project } from '../types';
 
@@ -21,8 +21,6 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
         return <Package className="w-7 h-7 text-indigo-600 dark:text-indigo-400" />;
       case 'ShieldAlert':
         return <ShieldAlert className="w-7 h-7 text-purple-600 dark:text-purple-400" />;
-      case 'GraduationCap':
-        return <GraduationCap className="w-7 h-7 text-blue-600 dark:text-blue-400" />;
       case 'Database':
         return <Database className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />;
       default:
@@ -31,16 +29,16 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
   };
 
   return (
-    <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
+    <section id="projects" className="max-w-6xl mx-auto px-6 py-24 border-t border-slate-200 dark:border-white/5">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
-          <span className="text-accent text-xs font-bold uppercase tracking-widest block mb-2 font-mono">
-            // FEATURED PORTFOLIO
+          <span className="text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-widest block mb-2 font-mono">
+            // ENTERPRISE SOLUTIONS & PROJECTS
           </span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">Featured Projects</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">Key Projects</h2>
           <p className="text-slate-600 dark:text-gray-400 mt-2 text-base max-w-xl">
-            A selection of backend systems, database engines, and network security research projects.
+            Real-world database systems, automated algorithms, and full-stack integrations developed for retail operations and enterprise ERPs.
           </p>
         </div>
 
@@ -48,9 +46,8 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
         <div className="flex flex-wrap gap-2">
           {[
             { id: 'all', label: 'All Projects' },
-            { id: 'backend', label: 'C# / ASP.NET' },
-            { id: 'security', label: 'Security & Python' },
-            { id: 'database', label: 'Oracle SQL' },
+            { id: 'database', label: 'PL/SQL & Oracle' },
+            { id: 'fullstack', label: 'ASP.NET & Full-Stack' },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -68,15 +65,15 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
       </div>
 
       {/* Projects Grid */}
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredProjects.map((project) => (
           <div
             key={project.id}
-            className="project-card p-8 rounded-3xl transition-all duration-300 group flex flex-col justify-between relative overflow-hidden"
+            className="project-card p-7 rounded-3xl transition-all duration-300 group flex flex-col justify-between relative overflow-hidden"
           >
             {/* Top Row: Icon & Action Links */}
             <div>
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex justify-between items-start mb-5">
                 <div className="p-3.5 bg-indigo-50 dark:bg-indigo-500/15 border border-indigo-200 dark:border-indigo-500/25 rounded-2xl group-hover:scale-110 transition duration-300">
                   {getProjectIcon(project.icon)}
                 </div>
@@ -90,7 +87,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                       className="p-2 text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition"
                       aria-label="View Github Repository"
                     >
-                      <Github className="w-5 h-5" />
+                      <Github className="w-4 h-4" />
                     </a>
                   )}
                   {project.liveUrl && (
@@ -101,27 +98,27 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                       className="p-2 text-slate-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 rounded-lg transition"
                       aria-label="View Project"
                     >
-                      <ExternalLink className="w-5 h-5" />
+                      <ExternalLink className="w-4 h-4" />
                     </a>
                   )}
                 </div>
               </div>
 
               {/* Title & Short Description */}
-              <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition">
+              <h3 className="text-xl font-bold mb-2.5 text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition">
                 {project.title}
               </h3>
               
-              <p className="text-slate-600 dark:text-gray-300 text-sm mb-6 leading-relaxed">
+              <p className="text-slate-600 dark:text-gray-300 text-xs sm:text-sm mb-5 leading-relaxed">
                 {project.shortDescription}
               </p>
             </div>
 
             {/* Bottom Row: Tags & Detail Inspector Button */}
-            <div className="pt-4 border-t border-slate-200 dark:border-white/5 space-y-4">
-              <div className="flex flex-wrap gap-2 text-xs font-bold text-accent font-mono">
-                {project.tags.map((tag, idx) => (
-                  <span key={idx} className="bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 px-2.5 py-1 rounded-md border border-indigo-200 dark:border-indigo-500/15">
+            <div className="pt-4 border-t border-slate-200 dark:border-white/5 space-y-3.5">
+              <div className="flex flex-wrap gap-1.5 text-[11px] font-bold font-mono">
+                {project.tags.slice(0, 3).map((tag, idx) => (
+                  <span key={idx} className="bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 px-2 py-0.5 rounded-md border border-indigo-200 dark:border-indigo-500/15">
                     {tag}
                   </span>
                 ))}
@@ -129,11 +126,11 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
 
               <button
                 onClick={() => onSelectProject(project)}
-                className="w-full py-2.5 px-4 bg-slate-100 dark:bg-white/5 hover:bg-indigo-50 dark:hover:bg-indigo-600/20 hover:border-indigo-300 dark:hover:border-indigo-500/40 border border-slate-200 dark:border-white/10 rounded-xl text-xs font-semibold text-slate-700 dark:text-gray-300 hover:text-indigo-700 dark:hover:text-white transition flex items-center justify-between group/btn"
+                className="w-full py-2.5 px-3.5 bg-slate-100 dark:bg-white/5 hover:bg-indigo-50 dark:hover:bg-indigo-600/20 hover:border-indigo-300 dark:hover:border-indigo-500/40 border border-slate-200 dark:border-white/10 rounded-xl text-xs font-semibold text-slate-700 dark:text-gray-300 hover:text-indigo-700 dark:hover:text-white transition flex items-center justify-between group/btn"
               >
                 <span className="flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-                  <span>Inspect Architecture & Details</span>
+                  <span>Inspect Architecture</span>
                 </span>
                 <ChevronRight className="w-4 h-4 text-indigo-600 dark:text-indigo-400 group-hover/btn:translate-x-1 transition-transform" />
               </button>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Send, Check, Copy, Linkedin, Github, MessageSquare, Sparkles } from 'lucide-react';
-import { PERSONAL_INFO } from '../data/portfolioData';
+import { Mail, Send, Check, Copy, Linkedin, Github, Phone, MapPin, Sparkles } from 'lucide-react';
+import { PERSONAL_INFO, PERSONAL_DETAILS } from '../data/portfolioData';
 import { ContactFormData } from '../types';
 
 export const Contact: React.FC = () => {
@@ -40,19 +40,19 @@ export const Contact: React.FC = () => {
 
       {/* Heading */}
       <div className="relative z-10 mb-12 space-y-4">
-        <span className="text-accent text-xs font-bold uppercase tracking-widest block font-mono">
+        <span className="text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-widest block font-mono">
           // CONNECT & COLLABORATE
         </span>
         <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white italic">
           Let's build <br className="md:hidden" />
-          something <span className="text-accent underline decoration-indigo-500/40 underline-offset-8">Great</span>.
+          something <span className="text-indigo-600 dark:text-indigo-400 underline decoration-indigo-500/40 underline-offset-8">Great</span>.
         </h2>
         <p className="text-slate-600 dark:text-gray-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-          Currently available for full-time software developer roles, internships, or technical projects. Looking for opportunities to contribute and learn.
+          Open to enterprise database developer roles, Oracle PL/SQL performance tuning, and software engineering opportunities.
         </p>
 
-        {/* Email Quick Copy Widget */}
-        <div className="pt-2 flex justify-center">
+        {/* Contact Info Pills */}
+        <div className="pt-2 flex flex-wrap justify-center gap-3">
           <div className="inline-flex items-center space-x-3 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-2.5 rounded-2xl backdrop-blur-md shadow-sm">
             <Mail className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
             <span className="text-xs sm:text-sm font-mono text-slate-800 dark:text-gray-200 font-medium">{PERSONAL_INFO.email}</span>
@@ -71,6 +71,19 @@ export const Contact: React.FC = () => {
               )}
             </button>
           </div>
+
+          <a 
+            href={PERSONAL_INFO.socials.phone}
+            className="inline-flex items-center space-x-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-2.5 rounded-2xl backdrop-blur-md shadow-sm text-xs sm:text-sm font-mono text-slate-800 dark:text-gray-200 font-medium hover:border-indigo-500/40 transition"
+          >
+            <Phone className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+            <span>{PERSONAL_DETAILS.phone}</span>
+          </a>
+
+          <div className="inline-flex items-center space-x-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-4 py-2.5 rounded-2xl backdrop-blur-md shadow-sm text-xs sm:text-sm font-mono text-slate-800 dark:text-gray-200 font-medium">
+            <MapPin className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <span>{PERSONAL_DETAILS.location}</span>
+          </div>
         </div>
       </div>
 
@@ -83,7 +96,7 @@ export const Contact: React.FC = () => {
             </div>
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Message Delivered!</h3>
             <p className="text-slate-600 dark:text-gray-300 text-sm max-w-md mx-auto">
-              Thank you for reaching out, {formData.name || 'friend'}. Muhammed Midlaj will review your message and reply back shortly.
+              Thank you for reaching out, {formData.name || 'friend'}. Muhammed Midlaj MK will review your message and reply back shortly.
             </p>
             <button
               onClick={() => setSubmitted(false)}
@@ -100,7 +113,7 @@ export const Contact: React.FC = () => {
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Alex Rivera"
+                  placeholder="e.g. Hiring Manager / Recruiter"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full p-4 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl focus:outline-none focus:border-indigo-500 text-slate-900 dark:text-white text-sm placeholder-slate-400 dark:placeholder-gray-500 transition"
@@ -112,7 +125,7 @@ export const Contact: React.FC = () => {
                 <input
                   type="email"
                   required
-                  placeholder="e.g. alex@company.com"
+                  placeholder="e.g. contact@company.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full p-4 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl focus:outline-none focus:border-indigo-500 text-slate-900 dark:text-white text-sm placeholder-slate-400 dark:placeholder-gray-500 transition"
@@ -124,7 +137,7 @@ export const Contact: React.FC = () => {
               <label className="block text-xs font-mono text-slate-600 dark:text-gray-400 mb-1.5 font-semibold">SUBJECT</label>
               <input
                 type="text"
-                placeholder="e.g. Internship Inquiry / Project Request"
+                placeholder="e.g. Database Engineer Role / Project Inquiry"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 className="w-full p-4 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl focus:outline-none focus:border-indigo-500 text-slate-900 dark:text-white text-sm placeholder-slate-400 dark:placeholder-gray-500 transition"
@@ -136,7 +149,7 @@ export const Contact: React.FC = () => {
               <textarea
                 required
                 rows={4}
-                placeholder="Write your message here..."
+                placeholder="Write your message or role requirements..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="w-full p-4 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl focus:outline-none focus:border-indigo-500 text-slate-900 dark:text-white text-sm placeholder-slate-400 dark:placeholder-gray-500 transition resize-none"
@@ -146,7 +159,7 @@ export const Contact: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4 bg-accent hover:bg-indigo-600 transition-all duration-300 rounded-xl font-bold text-white shadow-lg shadow-indigo-500/25 flex items-center justify-center space-x-2 text-sm disabled:opacity-50"
+              className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 rounded-xl font-bold text-white shadow-lg shadow-indigo-500/25 flex items-center justify-center space-x-2 text-sm disabled:opacity-50"
             >
               {loading ? (
                 <span>Transmitting Message...</span>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { X, Download, Mail, BookOpen, Briefcase, Award, Code, CheckCircle, ExternalLink } from 'lucide-react';
-import { PERSONAL_INFO, EDUCATION_DATA, SKILL_CATEGORIES, PROJECTS_DATA } from '../data/portfolioData';
+import { X, Download, Mail, BookOpen, Briefcase, Award, Code, CheckCircle, ExternalLink, MapPin, Phone, Building2, User } from 'lucide-react';
+import { PERSONAL_INFO, PERSONAL_DETAILS, EDUCATION_LIST, SKILL_CATEGORIES, PROJECTS_DATA, WORK_EXPERIENCE } from '../data/portfolioData';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -50,59 +50,50 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
         <div className="p-6 sm:p-8 overflow-y-auto space-y-8 font-sans">
           
           {/* Resume Top Header */}
-          <div className="border-b border-slate-200 dark:border-white/10 pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div>
-              <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{PERSONAL_INFO.name}</h1>
-              <p className="text-indigo-600 dark:text-indigo-400 font-semibold text-base mt-1">{PERSONAL_INFO.title}</p>
-              <p className="text-slate-500 dark:text-gray-400 text-xs mt-1">Specializing in ASP.NET, Oracle SQL, and Cybersecurity Research</p>
+          <div className="border-b border-slate-200 dark:border-white/10 pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+            <div className="flex items-center gap-4">
+              <img 
+                src={PERSONAL_INFO.profileImage} 
+                alt={PERSONAL_INFO.name} 
+                referrerPolicy="no-referrer"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover object-top border-2 border-indigo-500/30 shadow-md shrink-0"
+              />
+              <div>
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight uppercase">{PERSONAL_INFO.name}</h1>
+                <p className="text-indigo-600 dark:text-indigo-400 font-semibold text-sm sm:text-base mt-0.5">{PERSONAL_INFO.title}</p>
+                <p className="text-slate-500 dark:text-gray-400 text-xs mt-0.5">Enterprise Retail Databases • PL/SQL Optimization • ERP Integration</p>
+              </div>
             </div>
-            <div className="text-xs space-y-1.5 text-slate-700 dark:text-gray-300 bg-slate-50 dark:bg-white/5 p-3 rounded-xl border border-slate-200 dark:border-white/5">
+            <div className="text-xs space-y-1.5 text-slate-700 dark:text-gray-300 bg-slate-50 dark:bg-white/5 p-3 rounded-xl border border-slate-200 dark:border-white/5 shrink-0">
+              <p className="flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+                <span>{PERSONAL_DETAILS.location}</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+                <a href={PERSONAL_INFO.socials.phone} className="hover:underline">{PERSONAL_DETAILS.phone}</a>
+              </p>
               <p className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
                 <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:underline">{PERSONAL_INFO.email}</a>
-              </p>
-              <p className="flex items-center gap-2">
-                <ExternalLink className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-                <span>India • Remote Available</span>
               </p>
             </div>
           </div>
 
           {/* Professional Summary */}
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2 mb-2">
-              <BookOpen className="w-4 h-4" /> Professional Profile
+            <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2 mb-2 font-mono">
+              <BookOpen className="w-4 h-4" /> Professional Summary
             </h2>
             <p className="text-sm text-slate-700 dark:text-gray-300 leading-relaxed bg-slate-50 dark:bg-white/[0.02] p-4 rounded-xl border border-slate-200 dark:border-white/5">
-              Dedicated Software Developer with strong foundation in Clean Architecture, relational database design, and RESTful API development. Passionate about high-efficiency backend systems using ASP.NET Core and Oracle SQL, complemented by active academic research in network DDoS detection at the Fog layer.
+              Oracle SQL Developer and Database Engineer with 2+ years of hands-on experience designing, developing, optimizing, and maintaining Oracle-based database systems for enterprise-level retail solutions. Skilled in PL/SQL development, performance tuning, and reporting, with a track record of building automated solutions for data-driven business processes and integrating backend logic with front-end portals and ERP systems.
             </p>
           </div>
 
-          {/* Education */}
+          {/* Technical Skills */}
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2 mb-3">
-              <Award className="w-4 h-4" /> Education
-            </h2>
-            <div className="bg-slate-50 dark:bg-white/[0.02] p-4 rounded-xl border border-slate-200 dark:border-white/5 flex justify-between items-start">
-              <div>
-                <h3 className="font-bold text-slate-900 dark:text-white text-base">{EDUCATION_DATA.degree}</h3>
-                <p className="text-xs text-slate-500 dark:text-gray-400 mt-0.5">{EDUCATION_DATA.institution}</p>
-                <ul className="mt-2 space-y-1 text-xs text-slate-700 dark:text-gray-300 list-disc list-inside">
-                  {EDUCATION_DATA.highlights.map((h, idx) => (
-                    <li key={idx}>{h}</li>
-                  ))}
-                </ul>
-              </div>
-              <span className="text-xs font-mono px-2.5 py-1 bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30 rounded-md font-semibold">
-                {EDUCATION_DATA.period}
-              </span>
-            </div>
-          </div>
-
-          {/* Technical Skills Grid */}
-          <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2 mb-3">
-              <Code className="w-4 h-4" /> Key Competencies
+            <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2 mb-3 font-mono">
+              <Code className="w-4 h-4" /> Skills
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {SKILL_CATEGORIES.map((cat) => (
@@ -120,10 +111,48 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
             </div>
           </div>
 
+          {/* Professional Experience */}
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2 mb-3 font-mono">
+              <Briefcase className="w-4 h-4" /> Professional Experience
+            </h2>
+            <div className="space-y-4">
+              {WORK_EXPERIENCE.map((exp, idx) => (
+                <div key={idx} className="bg-slate-50 dark:bg-white/[0.02] p-5 rounded-xl border border-slate-200 dark:border-white/5 space-y-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <div>
+                      <h3 className="font-bold text-slate-900 dark:text-white text-base">{exp.company}</h3>
+                      <p className="text-xs text-indigo-600 dark:text-indigo-400 font-semibold">{exp.role}</p>
+                    </div>
+                    <span className="text-xs font-mono px-2.5 py-1 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 rounded font-semibold self-start sm:self-auto">
+                      {exp.period}
+                    </span>
+                  </div>
+
+                  <div className="space-y-3 pt-2">
+                    {exp.responsibilities.map((resp, rIdx) => (
+                      <div key={rIdx} className="space-y-1.5">
+                        <h4 className="text-xs font-bold text-slate-800 dark:text-gray-200">{resp.area}</h4>
+                        <ul className="space-y-1">
+                          {resp.points.map((p, pIdx) => (
+                            <li key={pIdx} className="text-xs text-slate-600 dark:text-gray-300 flex items-start gap-2">
+                              <span className="text-indigo-500 dark:text-indigo-400 mt-0.5">•</span>
+                              <span>{p}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Key Projects */}
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2 mb-3">
-              <Briefcase className="w-4 h-4" /> Key Projects & Research
+            <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2 mb-3 font-mono">
+              <Building2 className="w-4 h-4" /> Projects
             </h2>
             <div className="space-y-3">
               {PROJECTS_DATA.map((proj) => (
@@ -131,7 +160,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   <div className="flex justify-between items-start">
                     <h3 className="font-bold text-slate-900 dark:text-white text-sm">{proj.title}</h3>
                     <div className="flex gap-1.5">
-                      {proj.tags.map((t, idx) => (
+                      {proj.tags.slice(0, 3).map((t, idx) => (
                         <span key={idx} className="text-[10px] font-mono px-1.5 py-0.5 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 rounded font-semibold">
                           {t}
                         </span>
@@ -139,18 +168,54 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                     </div>
                   </div>
                   <p className="text-xs text-slate-600 dark:text-gray-300 mt-2">{proj.fullDescription}</p>
-                  {proj.architectureDetails && (
-                    <div className="mt-2.5 pt-2 border-t border-slate-200 dark:border-white/5 space-y-1">
-                      {proj.architectureDetails.map((item, idx) => (
-                        <div key={idx} className="flex items-center text-[11px] text-slate-500 dark:text-gray-400 gap-1.5">
-                          <CheckCircle className="w-3 h-3 text-indigo-600 dark:text-indigo-400 shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Education */}
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2 mb-3 font-mono">
+              <Award className="w-4 h-4" /> Education
+            </h2>
+            <div className="space-y-3">
+              {EDUCATION_LIST.map((edu, idx) => (
+                <div key={idx} className="bg-slate-50 dark:bg-white/[0.02] p-4 rounded-xl border border-slate-200 dark:border-white/5 flex justify-between items-start">
+                  <div>
+                    <h3 className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">{edu.degree}</h3>
+                    <p className="text-xs text-slate-500 dark:text-gray-400 mt-0.5">{edu.institution} {edu.board && `— ${edu.board}`}</p>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 block">{edu.grade}</span>
+                    <span className="text-[11px] font-mono text-slate-400 dark:text-gray-500">{edu.period}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Personal Details */}
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-2 mb-3 font-mono">
+              <User className="w-4 h-4" /> Personal Details
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-slate-50 dark:bg-white/[0.02] p-4 rounded-xl border border-slate-200 dark:border-white/5">
+              <div>
+                <span className="text-slate-400 dark:text-gray-500 block text-[10px] uppercase font-mono">Date of Birth</span>
+                <span className="font-semibold text-slate-800 dark:text-gray-200">{PERSONAL_DETAILS.dob}</span>
+              </div>
+              <div>
+                <span className="text-slate-400 dark:text-gray-500 block text-[10px] uppercase font-mono">Nationality</span>
+                <span className="font-semibold text-slate-800 dark:text-gray-200">{PERSONAL_DETAILS.nationality}</span>
+              </div>
+              <div>
+                <span className="text-slate-400 dark:text-gray-500 block text-[10px] uppercase font-mono">Location</span>
+                <span className="font-semibold text-slate-800 dark:text-gray-200">{PERSONAL_DETAILS.location}</span>
+              </div>
+              <div>
+                <span className="text-slate-400 dark:text-gray-500 block text-[10px] uppercase font-mono">Phone</span>
+                <span className="font-semibold text-slate-800 dark:text-gray-200 font-mono">{PERSONAL_DETAILS.phone}</span>
+              </div>
             </div>
           </div>
 
@@ -158,7 +223,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
 
         {/* Footer actions */}
         <div className="p-4 border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] flex justify-between items-center text-xs text-slate-500 dark:text-gray-400">
-          <span>Muhammed Midlaj MK — Portfolio CV</span>
+          <span>{PERSONAL_INFO.name} — Oracle SQL Developer & Database Engineer</span>
           <button
             onClick={onClose}
             className="px-4 py-2 bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 text-slate-800 dark:text-white rounded-lg transition font-medium"
