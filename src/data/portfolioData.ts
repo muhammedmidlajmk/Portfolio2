@@ -1,5 +1,5 @@
 import { Project, SkillCategory, Education, WorkExperience, PersonalDetails } from '../types';
-import profilePic from '../assets/images/midlaj_profile_1787387219515.jpg';
+import profilePic from '../assets/images/shiksak.jpeg';
 
 export const PERSONAL_INFO = {
   name: "MUHAMMED MIDLAJ MK",
