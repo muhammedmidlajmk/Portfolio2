@@ -1,12 +1,25 @@
-import React from 'react';
-import { Linkedin, Github, Mail, ArrowRight, Code2, Database, MapPin, Phone, Cpu, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { Linkedin, Github, Mail, ArrowRight, Code2, Database, MapPin, Phone, Cpu, ShieldCheck, Download, FileText, Check } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { downloadCvPdf } from '../utils/generateCvPdf';
 
 interface HeroProps {
   onOpenResume: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
+  const [downloaded, setDownloaded] = useState(false);
+
+  const handleDirectDownload = () => {
+    try {
+      downloadCvPdf();
+      setDownloaded(true);
+      setTimeout(() => setDownloaded(false), 3000);
+    } catch (e) {
+      onOpenResume();
+    }
+  };
+
   return (
     <header id="home" className="max-w-6xl mx-auto px-6 pt-36 pb-20 md:pt-44 md:pb-28 flex flex-col md:flex-row items-center justify-between gap-12">
       {/* Text Info */}
@@ -89,27 +102,37 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap items-center gap-4 pt-3">
+        <div className="flex flex-wrap items-center gap-3 pt-3">
           <a 
             href="#experience" 
-            className="px-7 py-3.5 bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 rounded-xl font-bold text-white shadow-lg shadow-indigo-500/25 flex items-center space-x-2 group text-sm"
+            className="px-6 py-3.5 bg-indigo-600 hover:bg-indigo-500 transition-all duration-300 rounded-xl font-bold text-white shadow-lg shadow-indigo-500/25 flex items-center space-x-2 group text-sm"
           >
             <span>View Experience</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
           
-          <a 
-            href="#projects" 
-            className="px-7 py-3.5 border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 hover:border-slate-300 dark:hover:border-white/20 transition-all duration-300 rounded-xl font-semibold text-slate-800 dark:text-gray-200 text-sm"
+          <button
+            onClick={handleDirectDownload}
+            className="px-5 py-3.5 border border-indigo-500/40 bg-indigo-50/50 dark:bg-indigo-500/10 hover:bg-indigo-100 dark:hover:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 transition-all duration-300 rounded-xl font-semibold text-sm flex items-center gap-2 shadow-sm cursor-pointer"
           >
-            Explore Projects
-          </a>
+            {downloaded ? (
+              <>
+                <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <span>Downloaded CV!</span>
+              </>
+            ) : (
+              <>
+                <Download className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                <span>Download CV (.pdf)</span>
+              </>
+            )}
+          </button>
 
           <button
             onClick={onOpenResume}
-            className="px-4 py-3.5 text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 hover:text-slate-900 dark:hover:text-white underline underline-offset-8 transition-colors"
+            className="px-4 py-3.5 text-xs font-mono font-bold text-slate-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-white underline underline-offset-8 transition-colors cursor-pointer"
           >
-            [ Download / View CV ]
+            [ View Online CV ]
           </button>
         </div>
       </div>

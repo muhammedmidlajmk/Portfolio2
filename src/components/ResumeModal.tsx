@@ -1,6 +1,7 @@
-import React from 'react';
-import { X, Download, Mail, BookOpen, Briefcase, Award, Code, CheckCircle, ExternalLink, MapPin, Phone, Building2, User } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Download, Mail, BookOpen, Briefcase, Award, Code, CheckCircle, ExternalLink, MapPin, Phone, Building2, User, Printer, Check } from 'lucide-react';
 import { PERSONAL_INFO, PERSONAL_DETAILS, EDUCATION_LIST, SKILL_CATEGORIES, PROJECTS_DATA, WORK_EXPERIENCE } from '../data/portfolioData';
+import { downloadCvPdf } from '../utils/generateCvPdf';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -8,7 +9,24 @@ interface ResumeModalProps {
 }
 
 export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
+  const [downloading, setDownloading] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
+
   if (!isOpen) return null;
+
+  const handleDownload = () => {
+    setDownloading(true);
+    try {
+      downloadCvPdf();
+      setDownloaded(true);
+      setTimeout(() => setDownloaded(false), 3000);
+    } catch (err) {
+      console.error("PDF generation error:", err);
+      window.print();
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   const handlePrint = () => {
     window.print();
@@ -27,19 +45,38 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02]">
           <div className="flex items-center space-x-3">
             <div className="w-3 h-3 rounded-full bg-indigo-600 dark:bg-indigo-500 animate-pulse" />
-            <h3 className="font-bold text-slate-900 dark:text-white text-lg tracking-tight">Curriculum Vitae — {PERSONAL_INFO.name}</h3>
+            <h3 className="font-bold text-slate-900 dark:text-white text-base sm:text-lg tracking-tight">Curriculum Vitae — {PERSONAL_INFO.name}</h3>
           </div>
           <div className="flex items-center space-x-2">
             <button
-              onClick={handlePrint}
-              className="flex items-center space-x-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold transition shadow-xs"
+              onClick={handleDownload}
+              disabled={downloading}
+              className="flex items-center space-x-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition shadow-md shadow-indigo-500/20 cursor-pointer disabled:opacity-50"
+              title="Download official PDF resume"
             >
-              <Download className="w-3.5 h-3.5" />
-              <span>Print / Save PDF</span>
+              {downloaded ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-300" />
+                  <span>Downloaded PDF!</span>
+                </>
+              ) : (
+                <>
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download CV (.pdf)</span>
+                </>
+              )}
+            </button>
+            <button
+              onClick={handlePrint}
+              className="hidden sm:flex items-center space-x-1 px-3 py-2 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-gray-300 rounded-xl text-xs font-semibold transition border border-slate-200 dark:border-white/10"
+              title="Open Print Dialog"
+            >
+              <Printer className="w-3.5 h-3.5" />
+              <span>Print</span>
             </button>
             <button
               onClick={onClose}
-              className="p-1.5 text-slate-400 hover:text-slate-900 dark:text-gray-400 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 rounded-lg transition"
+              className="p-2 text-slate-400 hover:text-slate-900 dark:text-gray-400 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 rounded-xl transition cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -222,14 +259,24 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
         </div>
 
         {/* Footer actions */}
-        <div className="p-4 border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] flex justify-between items-center text-xs text-slate-500 dark:text-gray-400">
+        <div className="p-4 border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-500 dark:text-gray-400">
           <span>{PERSONAL_INFO.name} — Oracle SQL Developer & Database Engineer</span>
-          <button
-            onClick={onClose}
-            className="px-4 py-2 bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 text-slate-800 dark:text-white rounded-lg transition font-medium"
-          >
-            Close
-          </button>
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+            <button
+              onClick={handleDownload}
+              disabled={downloading}
+              className="flex-1 sm:flex-initial flex items-center justify-center space-x-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-bold transition shadow-sm cursor-pointer disabled:opacity-50"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>{downloaded ? 'Downloaded PDF!' : 'Download PDF'}</span>
+            </button>
+            <button
+              onClick={onClose}
+              className="px-4 py-2 bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 text-slate-800 dark:text-white rounded-lg transition font-medium cursor-pointer"
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
