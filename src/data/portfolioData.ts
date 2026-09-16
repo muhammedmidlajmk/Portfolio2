@@ -5,9 +5,9 @@ export const PERSONAL_INFO = {
   name: "MUHAMMED MIDLAJ MK",
   displayName: "Muhammed Midlaj MK",
   shortName: "Midlaj",
-  initials: "MK",
-  title: "Oracle SQL Developer | Database Engineer",
-  tagline: "Oracle SQL Developer & Database Engineer with 2+ years of hands-on experience designing, optimizing, and automating enterprise-level retail databases and ERP backend systems.",
+  initials: "MM",
+  title: "Oracle SQL Developer | Database Engineer | .NET Core MVC Developer",
+  tagline: "Oracle SQL Developer, Database Engineer, and .NET Core MVC Developer with 2+ years of hands-on experience designing, developing, optimizing, and maintaining Oracle-based database systems and ASP.NET Core MVC applications for enterprise-level retail solutions.",
   email: "midlajmuhammed443@gmail.com",
   phone: "+965 66907621",
   location: "Hawally Block-1, Kuwait",
@@ -16,8 +16,9 @@ export const PERSONAL_INFO = {
   status: "Full-Time at Regency Group (Grand Hyper Market)",
   profileImage: profilePic,
   aboutParagraphs: [
-    "I am an Oracle SQL Developer and Database Engineer with 2+ years of hands-on experience designing, developing, optimizing, and maintaining Oracle-based database systems for enterprise-level retail solutions.",
-    "Skilled in PL/SQL development, performance tuning, and reporting, with a proven track record of building automated solutions for data-driven business processes, fine-tuning high-throughput transaction tables with millions of records, and integrating backend logic with front-end portals and ERP systems."
+    "Oracle SQL Developer, Database Engineer, and .NET Core MVC Developer with 2+ years of hands-on experience designing, developing, optimizing, and maintaining Oracle-based database systems and ASP.NET Core MVC applications for enterprise-level retail solutions.",
+    "Skilled in PL/SQL development, performance tuning, and reporting, with a track record of building automated solutions for data-driven business processes and integrating backend logic with front-end portals and ERP systems.",
+    "Currently expanding academic foundation through a Bachelor's degree in Computer Applications (BCA) to complement hands-on industry experience."
   ],
   socials: {
     github: "https://github.com/muhammedmidlajmk",
@@ -38,7 +39,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: "Regency Group For Corporate Management (Grand Hyper Market)",
     location: "Kuwait",
-    role: "Software Developer / Software Administrator",
+    role: "Software Developer | .NET Core MVC Developer | Software Administrator",
     period: "Jun 2023 – Present",
     isCurrent: true,
     responsibilities: [
@@ -48,6 +49,14 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
           "Created complex stored procedures, functions, packages, and triggers in PL/SQL to handle backend business logic for retail operations and ERP workflows.",
           "Developed and fine-tuned high-performance SQL queries for real-time dashboards and reporting systems.",
           "Implemented data validation, transformation, and integrity checks for transaction tables with millions of records."
+        ]
+      },
+      {
+        area: ".NET Core MVC Development",
+        points: [
+          "Developed and maintained web applications using ASP.NET Core MVC, implementing backend logic, controllers, and views for internal business portals.",
+          "Integrated ASP.NET Core MVC applications with Oracle databases to deliver end-to-end retail and ERP solutions.",
+          "Built REST APIs to connect front-end portals with backend PL/SQL services and business logic."
         ]
       },
       {
@@ -72,6 +81,17 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
+    id: "programming",
+    title: "Programming Languages",
+    skills: [
+      { name: "C#", level: "Advanced", isPrimary: true },
+      { name: "Python", level: "Proficient", isPrimary: true },
+      { name: "C", level: "Proficient", isPrimary: false },
+      { name: "Java", level: "Proficient", isPrimary: false },
+      { name: "JavaScript", level: "Proficient", isPrimary: true }
+    ]
+  },
+  {
     id: "database",
     title: "Database Management",
     skills: [
@@ -79,41 +99,37 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       { name: "PL/SQL", level: "Expert", isPrimary: true },
       { name: "Microsoft SQL Server", level: "Advanced", isPrimary: true },
       { name: "Query Performance Tuning", level: "Advanced", isPrimary: true },
-      { name: "Oracle RMAN Backups", level: "Proficient", isPrimary: false },
-      { name: "Materialized Views & Triggers", level: "Expert", isPrimary: true }
-    ]
-  },
-  {
-    id: "programming",
-    title: "Programming Languages",
-    skills: [
-      { name: "C#", level: "Advanced", isPrimary: true },
-      { name: "Python", level: "Intermediate", isPrimary: true },
-      { name: "C", level: "Proficient", isPrimary: false },
-      { name: "Java", level: "Proficient", isPrimary: false },
-      { name: "JavaScript", level: "Intermediate", isPrimary: true }
+      { name: "Oracle RMAN Backups", level: "Proficient", isPrimary: false }
     ]
   },
   {
     id: "frameworks",
-    title: "Frameworks & Web Technologies",
+    title: "Frameworks & APIs",
     skills: [
+      { name: "ASP.NET Core MVC", level: "Advanced", isPrimary: true },
       { name: "ASP.NET Core", level: "Advanced", isPrimary: true },
-      { name: "REST API", level: "Advanced", isPrimary: true },
-      { name: "HTML & CSS", level: "Advanced", isPrimary: false },
-      { name: "Bootstrap", level: "Advanced", isPrimary: false },
-      { name: "jQuery & AJAX", level: "Proficient", isPrimary: false }
+      { name: "REST API", level: "Advanced", isPrimary: true }
+    ]
+  },
+  {
+    id: "web",
+    title: "Web Technologies",
+    skills: [
+      { name: "HTML", level: "Advanced", isPrimary: true },
+      { name: "CSS", level: "Advanced", isPrimary: true },
+      { name: "Bootstrap", level: "Advanced", isPrimary: true },
+      { name: "jQuery", level: "Proficient", isPrimary: false },
+      { name: "AJAX", level: "Proficient", isPrimary: true }
     ]
   },
   {
     id: "tools",
     title: "Tools & Environments",
     skills: [
-      { name: "Oracle SQL Developer", level: "Expert", isPrimary: true },
-      { name: "Oracle Toad", level: "Advanced", isPrimary: true },
       { name: "Visual Studio", level: "Advanced", isPrimary: true },
       { name: "Visual Studio Code", level: "Advanced", isPrimary: true },
-      { name: "Excel Pivot Integration", level: "Advanced", isPrimary: false }
+      { name: "Oracle SQL Developer", level: "Expert", isPrimary: true },
+      { name: "Oracle Toad", level: "Advanced", isPrimary: true }
     ]
   }
 ];
@@ -122,17 +138,16 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "auto-po-algorithm",
     title: "Auto Ordering Algorithm in PL/SQL (Auto PO)",
-    shortDescription: "Automated product ordering algorithm in PL/SQL that generates purchase orders based on sales trends, stock levels, and threshold limits.",
-    fullDescription: "Created an enterprise-grade automated product ordering algorithm using PL/SQL to optimize inventory management for multi-branch retail stores. The algorithm autonomously calculates and generates purchase orders based on real-time sales data, current stock levels, buffer parameters, and predefined supplier thresholds, drastically reducing manual intervention and eliminating stockouts.",
-    tags: ["PL/SQL", "ORACLE SQL", "AUTO PURCHASE ORDER", "INVENTORY ERP", "ALGORITHM"],
+    shortDescription: "Automated product ordering algorithm using PL/SQL to optimize inventory management for retail stores.",
+    fullDescription: "Created an automated product ordering algorithm using PL/SQL to optimize inventory management for retail stores. The algorithm automatically generates purchase orders based on sales data, stock levels, and predefined thresholds, reducing manual intervention and eliminating stockouts. Integrated the solution with the inventory management system, ensuring accurate and timely reordering of products.",
+    tags: ["PL/SQL", "ORACLE SQL", "INVENTORY MANAGEMENT", "AUTO PO", "ALGORITHM"],
     category: "database",
     icon: "Package",
-    accentColor: "indigo",
+    accentColor: "blue",
     architectureDetails: [
-      "Designed high-performance PL/SQL packages and scheduled batch jobs for real-time inventory threshold evaluation",
-      "Dynamic PO generation matching supplier lead times, minimum order quantities (MOQ), and store consumption velocity",
-      "Seamless integration with enterprise inventory and ERP modules ensuring timely reordering",
-      "Eliminated stockouts and manual purchase entry overhead across retail outlets"
+      "Created an automated product ordering algorithm using PL/SQL to optimize inventory management for retail stores.",
+      "Algorithm automatically generates purchase orders based on sales data, stock levels, and predefined thresholds, reducing manual intervention and stockouts.",
+      "Integrated the solution with the inventory management system, ensuring accurate and timely reordering of products."
     ],
     githubUrl: "https://github.com/muhammedmidlajmk",
     liveUrl: "https://www.linkedin.com/in/muhammed-midlaj-584820294",
@@ -140,18 +155,16 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: "customer-loyalty-program",
-    title: "Customer Loyalty Program Backend",
-    shortDescription: "High-throughput PL/SQL backend engine for customer point redemption, tier deduction, and voucher issuance.",
-    fullDescription: "Architected and implemented robust backend logic for customer point redemption and voucher issuance using optimized PL/SQL procedures. Ensured the backend handled high-concurrency real-time point deductions, fraud validation, and voucher verification while guaranteeing 100% ACID transactional consistency across retail points of sale.",
-    tags: ["PL/SQL", "ORACLE SQL", "STORED PROCEDURES", "TRANSACTIONS", "LOYALTY ENGINE"],
+    title: "Customer Loyalty Program",
+    shortDescription: "Backend logic for customer point redemption, voucher issuance, and real-time deductions using PL/SQL procedures.",
+    fullDescription: "Designed backend logic for customer point redemption and voucher issuance using PL/SQL procedures. Ensured the backend system handled real-time point deductions and voucher validations, maintaining data accuracy across enterprise retail operations.",
+    tags: ["PL/SQL", "ORACLE SQL", "STORED PROCEDURES", "LOYALTY ENGINE", "TRANSACTIONS"],
     category: "database",
-    icon: "ShieldAlert",
-    accentColor: "purple",
+    icon: "ShieldCheck",
+    accentColor: "blue",
     architectureDetails: [
-      "Engineered atomic PL/SQL stored procedures for instant point redemption and voucher issuance",
-      "Handled high-volume concurrent transaction processing with stringent concurrency control and integrity checks",
-      "Real-time voucher validation and expiration mechanics integrated with POS registers",
-      "Audited point ledger tables with transactional rollback safety"
+      "Designed backend logic for customer point redemption and voucher issuance using PL/SQL procedures.",
+      "Ensured the backend system handled real-time point deductions and voucher validations, maintaining data accuracy."
     ],
     githubUrl: "https://github.com/muhammedmidlajmk",
     liveUrl: "https://www.linkedin.com/in/muhammed-midlaj-584820294",
@@ -159,18 +172,17 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: "ivision-blog-app",
-    title: "iVision Blog – Database Design & Integration",
-    shortDescription: "Centralized relational database structure in Oracle SQL and module integration for the iVision ASP.NET Core application.",
-    fullDescription: "Designed and implemented a normalized relational database schema in Oracle SQL for a centralized blog management platform to support smooth retail operations and internal corporate communication. Developed schema constraints, relationships, indexes, and procedures, collaborating with front-end engineers to seamlessly hook into the iVision ASP.NET Core web application.",
-    tags: ["ORACLE SQL", "ASP.NET CORE", "C#", "REST API", "RELATIONAL DB"],
+    title: "iVision Blog (Web Application) - Database Design & Integration",
+    shortDescription: "Relational database structure in Oracle SQL and ASP.NET Core MVC integration for centralized blog management.",
+    fullDescription: "Designed and implemented a relational database structure in Oracle SQL for a centralized blog management system for smooth retail operations. Developed tables, relationships, and constraints to manage users, posts, categories, tags, and comments efficiently. Collaborated with front-end developers to integrate the blog module into the iVision ASP.NET Core MVC application.",
+    tags: ["ORACLE SQL", "ASP.NET CORE MVC", "C#", "DATABASE DESIGN", "REST API"],
     category: "fullstack",
     icon: "Database",
-    accentColor: "emerald",
+    accentColor: "blue",
     architectureDetails: [
-      "Engineered comprehensive relational tables, primary/foreign key relationships, and integrity constraints",
-      "Efficient data management for users, hierarchical categories, tags, posts, and nested comments",
-      "RESTful API integration with the iVision ASP.NET Core enterprise web application",
-      "Optimized query execution plans and dynamic views for rapid content retrieval"
+      "Designed and implemented a relational database structure in Oracle SQL for a centralized blog management system for smooth retail operations.",
+      "Developed tables, relationships, and constraints to manage users, posts, categories, tags, and comments efficiently.",
+      "Collaborated with front-end developers to integrate the blog module into the iVision ASP.NET Core MVC application."
     ],
     githubUrl: "https://github.com/muhammedmidlajmk",
     liveUrl: "https://www.linkedin.com/in/muhammed-midlaj-584820294",
@@ -180,28 +192,38 @@ export const PROJECTS_DATA: Project[] = [
 
 export const EDUCATION_LIST: Education[] = [
   {
-    degree: "Diploma in Computer Engineering (3-Year)",
-    institution: "SSM Polytechnic College, Tirur, Kerala",
-    board: "Department of Technical Education, Kerala, India",
-    period: "Completed Feb 2023",
-    grade: "CGPA: 8.1 / 10",
-    status: "Graduated with Honors",
+    degree: "Bachelor of Computer Applications (BCA)",
+    institution: "KL University (Online)",
+    board: "Final Semester",
+    period: "Expected Completion: March 2027",
+    grade: "Pursuing (Final Semester)",
+    status: "In Progress",
     highlights: [
-      "3-Year intensive technical engineering curriculum in Computer Science & Systems",
-      "Deep focus on Relational Database Management, Data Structures, and Software Development",
-      "Completed practical capstone systems in Database Systems and C#/.NET"
+      "Expanding academic foundation through a Bachelor's degree in Computer Applications to complement hands-on industry experience",
+      "Advanced studies in software development, data structures, and computer applications"
     ]
   },
   {
-    degree: "Higher Secondary Education – Science",
-    institution: "Department of General and Higher Education, Kerala, India",
-    board: "Board of Higher Secondary Examinations, Kerala",
-    period: "Completed 2020",
-    grade: "Score: 85.2%",
+    degree: "Diploma in Computer Engineering (3-Year)",
+    institution: "SSM Polytechnic College, Tirur, Kerala",
+    board: "Department of Technical Education, Kerala, India",
+    period: "Feb 2023",
+    grade: "CGPA: 8.1",
     status: "Completed",
     highlights: [
-      "Concentration in Mathematics, Physics, Chemistry, and Computer Science",
-      "Achieved 85.2% distinction in state board examinations"
+      "3-Year comprehensive curriculum in Computer Engineering and Software Principles",
+      "Core competencies in Database Management, Object-Oriented Programming, and Systems Engineering"
+    ]
+  },
+  {
+    degree: "Higher Secondary Education - Science",
+    institution: "Department of General and Higher Education, Kerala, India",
+    board: "Department of General and Higher Education, Kerala, India",
+    period: "2020",
+    grade: "85.2%",
+    status: "Completed",
+    highlights: [
+      "Rigorous foundations in Mathematics, Physics, Chemistry, and Computer Science"
     ]
   }
 ];

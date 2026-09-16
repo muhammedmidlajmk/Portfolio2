@@ -8,20 +8,30 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { ProjectModal } from './components/ProjectModal';
+import { ScrollProgressBar } from './components/ScrollProgressBar';
+import { BackToTop } from './components/BackToTop';
+import { ConstellationBackground } from './components/ConstellationBackground';
 import { Project } from './types';
 import { ThemeProvider } from './context/ThemeContext';
+import { AnimationProvider } from './context/AnimationContext';
 
 function PortfolioApp() {
   const [resumeOpen, setResumeOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#0b0e14] text-slate-900 dark:text-white flex flex-col font-sans relative overflow-x-hidden transition-colors duration-300">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#050811] text-slate-900 dark:text-white flex flex-col font-sans relative overflow-x-hidden transition-colors duration-300">
+      {/* Interactive Constellation Mesh Background (Black & Blue) */}
+      <ConstellationBackground />
+
+      {/* Dynamic Scroll Progress Bar */}
+      <ScrollProgressBar />
+
       {/* Navigation */}
       <Navbar onOpenResume={() => setResumeOpen(true)} />
 
       {/* Main Content Sections */}
-      <main className="flex-1">
+      <main className="flex-1 relative z-10">
         <Hero onOpenResume={() => setResumeOpen(true)} />
         <Experience />
         <About />
@@ -31,6 +41,9 @@ function PortfolioApp() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating Animated Back-To-Top Trigger */}
+      <BackToTop />
 
       {/* Modals */}
       <ResumeModal 
@@ -49,7 +62,9 @@ function PortfolioApp() {
 export default function App() {
   return (
     <ThemeProvider>
-      <PortfolioApp />
+      <AnimationProvider>
+        <PortfolioApp />
+      </AnimationProvider>
     </ThemeProvider>
   );
 }
